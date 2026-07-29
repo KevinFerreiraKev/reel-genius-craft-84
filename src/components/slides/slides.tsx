@@ -181,11 +181,28 @@ export function SlideCase({ study, page }: { study: CaseStudy; page: number }) {
           ))}
         </div>
 
+        {study.extra && (
+          <div className="mt-8">
+            <p className="slide-kicker text-violet-soft">{study.extra.title}</p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              {study.extra.items.map((i) => (
+                <span
+                  key={i}
+                  className="slide-caption rounded-full border border-bone/12 bg-bone/[0.04] px-6 py-3 text-mute"
+                >
+                  {i}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {study.note && (
           <p className="slide-body mt-6 max-w-[1400px] border-l-2 border-violet pl-8 text-mute">
             {study.note}
           </p>
         )}
+
       </div>
     </SlideFrame>
   );

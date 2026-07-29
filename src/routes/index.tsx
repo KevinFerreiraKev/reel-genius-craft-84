@@ -1,24 +1,121 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useCallback, useEffect, useState } from "react";
+import { ChevronLeft, ChevronRight, Download, Maximize2 } from "lucide-react";
+import { ScaledSlide } from "@/components/slides/SlideLayout";
+import { deck } from "@/components/slides/slides";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Kevin Ferreira — Portfólio Social Media & Conteúdo" },
+      {
+        name: "description",
+        content:
+          "Portfólio de Kevin Ferreira: roteiro, gravação, edição e IA para perfis que somam mais de 3 milhões de seguidores.",
+      },
+      { property: "og:title", content: "Kevin Ferreira — Portfólio Social Media" },
+      {
+        property: "og:description",
+        content: "Cases de conteúdo em beleza e fitness: roteiro, direção de gravação e edição.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Deck,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function Deck() {
+  const [i, setI] = useState(0);
+  const [printMode, setPrintMode] = useState(false);
+  const total = deck.length;
+
+  const go = useCallback(
+    (d: number) => setI((p) => Math.min(total - 1, Math.max(0, p + d))),
+    [total],
+  );
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.search.includes("print")) {
+      setPrintMode(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight" || e.key === " ") go(1);
+      if (e.key === "ArrowLeft") go(-1);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [go]);
+
+  useEffect(() => {
+    document.title = `${i + 1}/${total} — Kevin Ferreira · Portfólio`;
+  }, [i, total]);
+
+  if (printMode) {
+    return (
+      <div className="bg-black">
+        {deck.map((slide, idx) => (
+          <div key={idx} className="print-page">
+            {slide}
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="flex h-screen flex-col bg-black">
+      <div className="relative flex-1">
+        <ScaledSlide>{deck[i]}</ScaledSlide>
+      </div>
+
+      <div className="no-print flex items-center justify-between gap-4 border-t border-white/10 bg-black px-6 py-4">
+        <div className="flex items-center gap-2">
+          {deck.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setI(idx)}
+              aria-label={`Slide ${idx + 1}`}
+              className={`h-1.5 rounded-full transition-all ${
+                idx === i ? "w-8 bg-violet-soft" : "w-3 bg-white/25 hover:bg-white/50"
+              }`}
+            />
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          <a
+            href="?print"
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 hover:bg-white/10"
+          >
+            <Download className="h-4 w-4" /> Baixar PDF
+          </a>
+          <button
+            onClick={() => document.documentElement.requestFullscreen?.()}
+            className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-sm text-white/80 hover:bg-white/10"
+          >
+            <Maximize2 className="h-4 w-4" /> Apresentar
+          </button>
+          <button
+            onClick={() => go(-1)}
+            disabled={i === 0}
+            className="rounded-full border border-white/15 p-2 text-white/80 disabled:opacity-30 hover:bg-white/10"
+            aria-label="Slide anterior"
+          >
+            <ChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            onClick={() => go(1)}
+            disabled={i === total - 1}
+            className="rounded-full border border-white/15 p-2 text-white/80 disabled:opacity-30 hover:bg-white/10"
+            aria-label="Próximo slide"
+          >
+            <ChevronRight className="h-5 w-5" />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

@@ -20,6 +20,8 @@ export type CaseStudy = {
   stats: { value: string; label: string }[];
   groups: ReelGroup[];
   note?: string;
+  extra?: { title: string; items: string[] };
+
 };
 
 export const cases: CaseStudy[] = [

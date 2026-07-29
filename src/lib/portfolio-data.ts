@@ -97,8 +97,18 @@ export const cases: CaseStudy[] = [
         ],
       },
     ],
+    extra: {
+      title: "Outros perfis que já atendi",
+      items: [
+        "@emporio.rituaali · 6,8 mil · marca de produtos",
+        "@samracademy · 366 mil · academia virtual",
+        "@samaraquino_personal · 212 mil · fitness",
+        "@gabrielsamra · 2,6 mi · beleza",
+      ],
+    },
   },
 ];
+
 
 export const pillars = [
   { n: "01", title: "Criação & Roteiro", desc: "Ideação, copy e direção de gravação" },

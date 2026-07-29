@@ -160,11 +160,15 @@ export function SlideCase({ study, page }: { study: CaseStudy; page: number }) {
           <Rule />
         </div>
 
-        <div className="mt-8 grid flex-1 auto-rows-min grid-cols-2 gap-6">
+        <div
+          className={`mt-8 grid flex-1 auto-rows-min content-center gap-6 ${
+            study.groups.length > 1 ? "grid-cols-2" : "grid-cols-1"
+          }`}
+        >
           {study.groups.map((g) => (
             <div
               key={g.role}
-              className="rounded-2xl border border-bone/10 bg-bone/[0.03] px-9 py-7"
+              className="rounded-2xl border border-bone/10 bg-bone/[0.03] px-9 py-8"
             >
               <span className="mb-3 block h-2 w-2 rounded-full bg-ember" />
               <p className="slide-body-lg font-semibold leading-tight">{g.role}</p>
@@ -176,6 +180,7 @@ export function SlideCase({ study, page }: { study: CaseStudy; page: number }) {
             </div>
           ))}
         </div>
+
         {study.note && (
           <p className="slide-body mt-6 max-w-[1400px] border-l-2 border-violet pl-8 text-mute">
             {study.note}

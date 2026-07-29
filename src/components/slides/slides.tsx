@@ -77,26 +77,27 @@ export function SlideAbout() {
           <img src={about.url} alt="Kevin Ferreira em evento" className="h-full w-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-l from-ink via-ink/25 to-transparent" />
         </div>
-        <div className="flex flex-col justify-center px-24 py-20">
+        <div className="flex flex-col justify-center px-20 py-16">
           <p className="slide-kicker text-violet-soft">Sobre mim</p>
-          <h2 className="slide-title mt-6 max-w-[880px]">
+          <h2 className="mt-5 max-w-[880px] font-display text-[62px] font-bold leading-[1.03] tracking-[-0.035em]">
             Conteúdo que junta tendência com estratégia
           </h2>
-          <p className="slide-body mt-8 max-w-[880px] text-mute">
+          <p className="slide-body mt-6 max-w-[880px] text-mute">
             Já produzi conteúdo para perfis que somam mais de 3 milhões de seguidores combinados, em
             nichos como beleza, fitness e educação. Meu trabalho vai do roteiro ao corte final — às
-            vezes entro só na edição, às vezes assumo a direção completa: o que gravar, como gravar e
-            como editar pra performar.
+            vezes entro só na edição, às vezes assumo a direção completa.
           </p>
-          <div className="mt-12 grid grid-cols-2 gap-5">
+          <div className="mt-10 grid grid-cols-2 gap-4">
             {pillars.map((p) => (
-              <div key={p.n} className="rounded-2xl border border-bone/10 bg-bone/[0.04] px-8 py-7">
+              <div key={p.n} className="rounded-2xl border border-bone/10 bg-bone/[0.04] px-7 py-6">
                 <span className="slide-chrome text-violet-soft">{p.n}</span>
-                <h3 className="slide-body-lg mt-2 font-semibold">{p.title}</h3>
+                <h3 className="slide-body-lg mt-1 font-semibold">{p.title}</h3>
                 <p className="slide-caption mt-2 text-mute">{p.desc}</p>
               </div>
             ))}
           </div>
+        </div>
+
         </div>
       </div>
     </SlideFrame>

@@ -135,19 +135,21 @@ export function SlideAI() {
 export function SlideCase({ study, page }: { study: CaseStudy; page: number }) {
   return (
     <SlideFrame page={page} total={TOTAL}>
-      <div className="flex h-full flex-col px-28 py-24">
+      <div className="flex h-full flex-col px-28 py-20">
         <div className="flex items-start justify-between gap-16">
           <div className="max-w-[1150px]">
             <p className="slide-kicker text-violet-soft">{study.index}</p>
-            <h2 className="slide-title mt-5">{study.client}</h2>
-            <p className="slide-caption mt-4 tracking-[0.14em] uppercase text-mute">{study.niche}</p>
-            <p className="slide-body mt-6 max-w-[1000px] text-mute">{study.summary}</p>
+            <h2 className="mt-4 font-display text-[68px] font-bold leading-[1.02] tracking-[-0.035em]">
+              {study.client}
+            </h2>
+            <p className="slide-caption mt-3 uppercase tracking-[0.14em] text-mute">{study.niche}</p>
+            <p className="slide-body mt-5 max-w-[1000px] text-mute">{study.summary}</p>
           </div>
           {study.stats.length > 0 && (
             <div className="flex shrink-0 gap-12 pt-4">
               {study.stats.map((s) => (
                 <div key={s.label} className="text-right">
-                  <p className="slide-title font-display leading-none text-bone">{s.value}</p>
+                  <p className="font-display text-[64px] font-bold leading-none">{s.value}</p>
                   <p className="slide-chrome mt-3 text-mute">{s.label}</p>
                 </div>
               ))}
@@ -155,34 +157,36 @@ export function SlideCase({ study, page }: { study: CaseStudy; page: number }) {
           )}
         </div>
 
-        <div className="mt-12">
+        <div className="mt-8">
           <Rule />
         </div>
 
-        <div className="mt-10 flex flex-1 flex-col gap-7">
+        <div className="mt-8 grid flex-1 auto-rows-min grid-cols-2 gap-6">
           {study.groups.map((g) => (
-            <div key={g.role} className="flex items-center gap-10 rounded-2xl border border-bone/10 bg-bone/[0.03] px-10 py-7">
-              <div className="w-[520px] shrink-0">
-                <span className="mb-3 block h-2 w-2 rounded-full bg-ember" />
-                <p className="slide-body-lg font-semibold">{g.role}</p>
-              </div>
-              <div className="flex flex-wrap gap-4">
+            <div
+              key={g.role}
+              className="rounded-2xl border border-bone/10 bg-bone/[0.03] px-9 py-7"
+            >
+              <span className="mb-3 block h-2 w-2 rounded-full bg-ember" />
+              <p className="slide-body-lg font-semibold leading-tight">{g.role}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
                 {g.links.map((l) => (
                   <ReelLink key={l.href} {...l} />
                 ))}
               </div>
             </div>
           ))}
-          {study.note && (
-            <p className="slide-body mt-2 max-w-[1300px] border-l-2 border-violet pl-8 text-mute">
-              {study.note}
-            </p>
-          )}
         </div>
+        {study.note && (
+          <p className="slide-body mt-6 max-w-[1400px] border-l-2 border-violet pl-8 text-mute">
+            {study.note}
+          </p>
+        )}
       </div>
     </SlideFrame>
   );
 }
+
 
 export function SlideContact() {
   return (

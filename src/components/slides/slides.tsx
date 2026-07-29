@@ -97,8 +97,6 @@ export function SlideAbout() {
             ))}
           </div>
         </div>
-
-        </div>
       </div>
     </SlideFrame>
   );

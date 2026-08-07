@@ -1,7 +1,7 @@
 export const contact = {
   name: "Kevin Ferreira",
   role: "Social Media & Criação de Conteúdo",
-  email: "kevinferreria1301@gmail.com",
+  email: "kevinferreira1301@gmail.com",
   whatsappLabel: "(24) 98176-4837",
   whatsappHref: "https://wa.me/5524981764837",
 };

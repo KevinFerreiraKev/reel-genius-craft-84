@@ -40,7 +40,7 @@ export function SlideCover() {
               Criação de conteúdo para redes sociais
             </p>
             <p className="slide-body mt-6 max-w-[760px] text-mute">
-              Roteiro, gravação, edição e cultura digital — cuidando do conteúdo do início ao
+              Roteiro, gravação, edição e cultura digital, cuidando do conteúdo do início ao
               publicado, com IA aplicada em cada etapa do processo.
             </p>
           </div>
@@ -84,7 +84,7 @@ export function SlideAbout() {
           </h2>
           <p className="slide-body mt-6 max-w-[880px] text-mute">
             Já produzi conteúdo para perfis que somam mais de 3 milhões de seguidores combinados, em
-            nichos como beleza, fitness e educação. Meu trabalho vai do roteiro ao corte final — às
+            nichos como beleza, fitness e educação. Meu trabalho vai do roteiro ao corte final. Às
             vezes entro só na edição, às vezes assumo a direção completa.
           </p>
           <div className="mt-10 grid grid-cols-2 gap-4">
@@ -111,7 +111,7 @@ export function SlideAI() {
           IA no meu processo criativo, do roteiro ao vídeo publicado
         </h2>
         <p className="slide-body mt-8 max-w-[1200px] text-mute">
-          Não uso IA pra substituir direção criativa — uso pra ganhar velocidade e testar mais ideias
+          Não uso IA pra substituir direção criativa, uso pra ganhar velocidade e testar mais ideias
           em menos tempo, sem perder qualidade de entrega.
         </p>
         <div className="mt-16 grid flex-1 grid-cols-4 gap-6">
